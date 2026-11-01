@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skill Assessment - AI Skills Route</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            AI Skills Route
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <section class="assessment-section">
+
+        <div class="assessment-card">
+
+            <p class="tagline">
+                STEP 1 · KNOW YOURSELF
+            </p>
+
+            <h1>
+                Skill Assessment
+            </h1>
+
+            <p class="assessment-description">
+                Tell us about your education, skills, interests and
+                career goals so we can build your personalized career path.
+            </p>
+
+
+            {% with messages = get_flashed_messages() %}
+
+                {% if messages %}
+
+                    <div class="flash-message">
+
+                        {% for message in messages %}
+
+                            <p>{{ message }}</p>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+            {% endwith %}
+
+
+            <form method="POST">
+
+
+                <label>
+                    Education
+                </label>
+
+                <select name="education" required>
+
+                    <option value="">
+                        Select your education
+                    </option>
+
+                    <option value="BSc Computer Science">
+                        B.Sc. Computer Science
+                    </option>
+
+                    <option value="BCA">
+                        BCA
+                    </option>
+
+                    <option value="BTech Computer Science">
+                        B.Tech Computer Science
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Experience Level
+                </label>
+
+                <select name="experience" required>
+
+                    <option value="">
+                        Select experience level
+                    </option>
+
+                    <option value="Beginner">
+                        Beginner
+                    </option>
+
+                    <option value="Intermediate">
+                        Intermediate
+                    </option>
+
+                    <option value="Advanced">
+                        Advanced
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Your Skills
+                </label>
+
+                <textarea
+                    name="skills"
+                    placeholder="Example: Python, HTML, CSS, JavaScript, SQL"
+                    required
+                ></textarea>
+
+
+                <label>
+                    Your Interests
+                </label>
+
+                <textarea
+                    name="interests"
+                    placeholder="Example: Artificial Intelligence, Web Development, Cybersecurity"
+                    required
+                ></textarea>
+
+
+                <label>
+                    Career Goal
+                </label>
+
+                <select name="career_goal" required>
+
+                    <option value="">
+                        Select your career goal
+                    </option>
+
+                    <option value="AI/ML Engineer">
+                        AI / ML Engineer
+                    </option>
+
+                    <option value="Data Scientist">
+                        Data Scientist
+                    </option>
+
+                    <option value="Data Analyst">
+                        Data Analyst
+                    </option>
+
+                    <option value="Web Developer">
+                        Web Developer
+                    </option>
+
+                    <option value="Software Developer">
+                        Software Developer
+                    </option>
+
+                    <option value="Cybersecurity Analyst">
+                        Cybersecurity Analyst
+                    </option>
+
+                    <option value="Cloud Engineer">
+                        Cloud Engineer
+                    </option>
+
+                    <option value="Not Sure">
+                        I'm not sure yet
+                    </option>
+
+                </select>
+
+
+                <button type="submit" class="auth-button">
+                    Save & Continue
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            © 2026 AI Skills Route. All rights reserved.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

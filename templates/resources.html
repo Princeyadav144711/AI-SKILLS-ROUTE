@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Learning Resources | AI Skills Route</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="dashboard-navbar">
+
+        <div class="dashboard-logo">
+            AI Skills Route
+        </div>
+
+        <div class="dashboard-nav-links">
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/assessment">
+                Assessment
+            </a>
+
+            <a href="/recommendation">
+                Careers
+            </a>
+
+            <a href="/skill-gap">
+                Skill Gap
+            </a>
+
+            <a href="/roadmap">
+                Roadmap
+            </a>
+
+            <a href="/resources">
+                Resources
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    <main class="resources-container">
+
+
+        <!-- PAGE HEADER -->
+
+        <section class="resources-header">
+
+            <p class="dashboard-label">
+                AI SKILLS ROUTE
+            </p>
+
+            <h1>
+                Learning Resources 📚
+            </h1>
+
+            <p>
+                Learn the skills required to become a
+                <strong>{{ career }}</strong>.
+            </p>
+
+        </section>
+
+
+        <!-- LEARNING RESOURCES -->
+
+        <section>
+
+            <div class="section-title">
+
+                <h2>
+                    📚 Recommended Learning Resources
+                </h2>
+
+                <span>
+                    {{ resources|length }} resources
+                </span>
+
+            </div>
+
+
+            <div class="resource-grid">
+
+                {% for resource in resources %}
+
+                <div class="resource-card">
+
+                    <div class="resource-icon">
+                        📘
+                    </div>
+
+                    <div class="resource-content">
+
+                        <span class="resource-type">
+                            {{ resource["type"] }}
+                        </span>
+
+                        <h3>
+                            {{ resource["title"] }}
+                        </h3>
+
+                        <p>
+                            Learn through
+                            <strong>
+                                {{ resource["platform"] }}
+                            </strong>.
+                        </p>
+
+                        <a
+                            href="{{ resource['url'] }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="resource-button">
+
+                            Open Resource →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% else %}
+
+                <div class="empty-resource">
+
+                    <h3>
+                        No resources available
+                    </h3>
+
+                    <p>
+                        Complete your assessment to get
+                        personalized learning resources.
+                    </p>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- PROJECTS -->
+
+        <section class="projects-section">
+
+            <div class="section-title">
+
+                <h2>
+                    🚀 Recommended Projects
+                </h2>
+
+                <span>
+                    {{ projects|length }} projects
+                </span>
+
+            </div>
+
+
+            <p class="projects-description">
+
+                Build these practical projects to improve your
+                skills and strengthen your portfolio.
+
+            </p>
+
+
+            <div class="project-grid">
+
+                {% for project in projects %}
+
+                <div class="project-card">
+
+                    <div class="project-number">
+                        {{ loop.index }}
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ project }}
+                        </h3>
+
+                        <p>
+                            Practical project for
+                            {{ career }}.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% else %}
+
+                <div class="empty-resource">
+
+                    <h3>
+                        No projects available
+                    </h3>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- BACK TO DASHBOARD -->
+
+        <div class="resources-back">
+
+            <a href="/dashboard"
+               class="dashboard-button">
+
+                ← Back to Dashboard
+
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="dashboard-footer">
+
+        <p>
+            © 2026 AI Skills Route |
+            AI-Powered Career Guidance System
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

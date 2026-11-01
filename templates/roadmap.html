@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Learning Roadmap - AI Skills Route</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            AI Skills Route
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/skill-gap">
+                Skill Gap
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <section class="roadmap-section">
+
+        <div class="roadmap-content">
+
+            <p class="tagline">
+                PERSONALIZED LEARNING PATH
+            </p>
+
+            <h1>
+                Your Learning Roadmap
+            </h1>
+
+            <p class="roadmap-description">
+
+                Your personalized roadmap for becoming a
+                <strong>{{ career }}</strong>.
+
+            </p>
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-card">
+
+                <div class="progress-header">
+
+                    <h2>
+                        Learning Progress
+                    </h2>
+
+                    <span>
+                        {{ progress }}%
+                    </span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width: {{ progress }}%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ROADMAP -->
+
+            <div class="roadmap-list">
+
+                {% for item in items %}
+
+                <div class="roadmap-item
+                    {% if item.completed %}
+                        completed
+                    {% endif %}">
+
+                    <div class="phase-number">
+                        {{ item.phase }}
+                    </div>
+
+
+                    <div class="roadmap-info">
+
+                        <h2>
+                            {{ item.title }}
+                        </h2>
+
+                        <p>
+                            {{ item.description }}
+                        </p>
+
+                        <div class="roadmap-skills">
+
+                            {{ item.skills }}
+
+                        </div>
+
+
+                        <form
+                            method="POST"
+                            action="{{ url_for(
+                                'roadmap.complete_item',
+                                item_id=item.id
+                            ) }}">
+
+                            {% if item.completed %}
+
+                                <button
+                                    type="submit"
+                                    class="completed-button">
+
+                                    ✓ Completed
+
+                                </button>
+
+                            {% else %}
+
+                                <button
+                                    type="submit"
+                                    class="complete-button">
+
+                                    Mark as Complete
+
+                                </button>
+
+                            {% endif %}
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            © 2026 AI Skills Route. All rights reserved.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Career Advisor - AI Skills Route</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="nav-brand">
+        AI Skills Route
+    </div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('assessment.skill_assessment') }}">Assessment</a>
+        <a href="{{ url_for('recommendation.show_recommendation') }}">Careers</a>
+        <a href="{{ url_for('skill_gap.show_skill_gap') }}">Skill Gap</a>
+        <a href="{{ url_for('roadmap.show_roadmap') }}">Roadmap</a>
+        <a href="{{ url_for('resources.show_resources') }}">Resources</a>
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+    </div>
+
+</nav>
+
+
+<div class="career-advisor-container">
+
+    <div class="career-advisor-header">
+
+        <div class="ai-icon">
+            ✦
+        </div>
+
+        <h1>AI Career Advisor</h1>
+
+        <p>
+            Get personalized career guidance powered by Gemini AI.
+        </p>
+
+    </div>
+
+
+    <div class="ai-advice-card">
+
+        <div class="ai-advice-title">
+            <span>🤖</span>
+            <h2>Your Personalized Career Advice</h2>
+        </div>
+
+        <div class="ai-response">
+
+            {{ advice | replace('\n', '<br>') | safe }}
+
+        </div>
+
+    </div>
+
+
+    <div class="advisor-actions">
+
+        <a href="{{ url_for('dashboard') }}" class="btn-primary">
+            ← Back to Dashboard
+        </a>
+
+        <a href="{{ url_for('assessment.skill_assessment') }}"
+           class="btn-secondary">
+            Update My Profile
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

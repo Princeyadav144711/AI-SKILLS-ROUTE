@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | AI Skills Route</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="dashboard-navbar">
+
+        <div class="dashboard-logo">
+            AI Skills Route
+        </div>
+
+        <div class="dashboard-nav-links">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('assessment.skill_assessment') }}">Assessment</a>
+            <a href="{{ url_for('recommendation.show_recommendation') }}">Careers</a>
+            <a href="{{ url_for('skill_gap.show_skill_gap') }}">Skill Gap</a>
+            <a href="{{ url_for('roadmap.show_roadmap') }}">Roadmap</a>
+            <a href="{{ url_for('resources.show_resources') }}">Resources</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN DASHBOARD -->
+    <main class="dashboard-container">
+
+        <!-- WELCOME SECTION -->
+        <section class="dashboard-welcome">
+
+            <div>
+
+                <p class="dashboard-label">
+                    AI SKILLS ROUTE
+                </p>
+
+                <h1>
+                    Welcome back, {{ current_user.name }} 👋
+                </h1>
+
+                <p>
+                    Continue building your skills and move closer
+                    to your ideal technology career.
+                </p>
+
+            </div>
+
+            <div class="career-badge">
+
+                <span>Your Career Path</span>
+
+                <strong>{{ career }}</strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- STAT CARDS -->
+        <section class="dashboard-stats">
+
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div>
+                    <p>Career Match</p>
+                    <h2>{{ career_score }}%</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🧠</div>
+                <div>
+                    <p>Skill Match</p>
+                    <h2>{{ skill_match }}%</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🛣️</div>
+                <div>
+                    <p>Roadmap</p>
+                    <h2>{{ roadmap_progress }}%</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div>
+                    <p>Resources</p>
+                    <h2>{{ resources_count }}</h2>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- DASHBOARD GRID -->
+        <section class="dashboard-grid">
+
+            <!-- CAREER RECOMMENDATION -->
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+                    <h2>🎯 Career Recommendation</h2>
+                </div>
+
+                {% if top_recommendation %}
+
+                    <h3>{{ top_recommendation["career"] }}</h3>
+
+                    <div class="score-bar">
+                        <div class="score-fill"
+                             style="width: {{ top_recommendation['score'] }}%;">
+                        </div>
+                    </div>
+
+                    <p>
+                        Compatibility Score:
+                        <strong>{{ top_recommendation["score"] }}%</strong>
+                    </p>
+
+                    <p class="card-description">
+                        {{ top_recommendation["reason"] }}
+                    </p>
+
+                {% else %}
+
+                    <p>
+                        Complete your skill assessment to receive
+                        personalized career recommendations.
+                    </p>
+
+                {% endif %}
+
+                <a href="{{ url_for('recommendation.show_recommendation') }}"
+                   class="dashboard-button">
+                    View Recommendations →
+                </a>
+
+            </div>
+
+
+            <!-- SKILL GAP -->
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+                    <h2>🧠 Skill Gap Analysis</h2>
+                </div>
+
+                <div class="large-percentage">
+                    {{ skill_match }}%
+                </div>
+
+                <p>
+                    Your current skills match
+                    <strong>{{ skill_match }}%</strong>
+                    of the skills required for
+                    <strong>{{ career }}</strong>.
+                </p>
+
+                <a href="{{ url_for('skill_gap.show_skill_gap') }}"
+                   class="dashboard-button">
+                    View Skill Gap →
+                </a>
+
+            </div>
+
+
+            <!-- ROADMAP -->
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+                    <h2>🛣️ Learning Roadmap</h2>
+                </div>
+
+                <p>
+                    You have completed
+                    <strong>{{ completed_roadmap }}</strong>
+                    of
+                    <strong>{{ total_roadmap }}</strong>
+                    roadmap steps.
+                </p>
+
+                <div class="progress-container">
+                    <div class="progress-fill"
+                         style="width: {{ roadmap_progress }}%;">
+                    </div>
+                </div>
+
+                <p class="progress-text">
+                    {{ roadmap_progress }}% Complete
+                </p>
+
+                <a href="{{ url_for('roadmap.show_roadmap') }}"
+                   class="dashboard-button">
+                    Continue Roadmap →
+                </a>
+
+            </div>
+
+
+            <!-- RESOURCES -->
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+                    <h2>📚 Learning Resources</h2>
+                </div>
+
+                <p>
+                    You currently have access to
+                    <strong>{{ resources_count }}</strong>
+                    learning resources and
+                    <strong>{{ projects_count }}</strong>
+                    project ideas.
+                </p>
+
+                <a href="{{ url_for('resources.show_resources') }}"
+                   class="dashboard-button">
+                    Explore Resources →
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK ACTIONS -->
+        <section class="quick-actions">
+
+            <h2>Quick Actions</h2>
+
+            <div class="quick-action-grid">
+
+                <a href="{{ url_for('assessment.skill_assessment') }}"
+                   class="quick-action">
+                    <span>📝</span>
+                    <strong>Skill Assessment</strong>
+                    <small>Update your skills and interests</small>
+                </a>
+
+                <a href="{{ url_for('recommendation.show_recommendation') }}"
+                   class="quick-action">
+                    <span>🎯</span>
+                    <strong>Career Recommendations</strong>
+                    <small>Discover suitable career paths</small>
+                </a>
+
+                <a href="{{ url_for('roadmap.show_roadmap') }}"
+                   class="quick-action">
+                    <span>🚀</span>
+                    <strong>Learning Roadmap</strong>
+                    <small>Follow your personalized roadmap</small>
+                </a>
+
+                <a href="{{ url_for('resources.show_resources') }}"
+                   class="quick-action">
+                    <span>💻</span>
+                    <strong>Projects & Resources</strong>
+                    <small>Learn and build practical projects</small>
+                </a>
+
+                <a href="{{ url_for('career_advisor.show_career_advisor') }}"
+                   class="quick-action">
+                    <span>🤖</span>
+                    <strong>AI Career Advisor</strong>
+                    <small>Get personalized guidance using Gemini AI</small>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="dashboard-footer">
+
+        <p>
+            © 2026 AI Skills Route |
+            AI-Powered Career Guidance System
+        </p>
+
+    </footer>
+
+</body>
+</html>
