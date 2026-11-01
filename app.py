@@ -133,6 +133,15 @@ def dashboard():
         assessment_complete=assessment_complete
     )
 
+print("\n========== REGISTER ROUTE CHECK ==========")
+
+for rule in app.url_map.iter_rules():
+    if "register" in rule.rule:
+        print("URL:", rule.rule)
+        print("ENDPOINT:", rule.endpoint)
+        print("METHODS:", rule.methods)
+
+print("==========================================\n")
 
 if __name__ == "__main__":
 
