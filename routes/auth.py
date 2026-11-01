@@ -1,3 +1,4 @@
+
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -8,7 +9,8 @@ from models.user import User
 auth = Blueprint("auth", __name__)
 
 
-# REGISTER
+# ---------------- REGISTER ----------------
+
 @auth.route("/register", methods=["GET", "POST"])
 def register():
 
@@ -48,7 +50,8 @@ def register():
     return render_template("register.html")
 
 
-# LOGIN
+# ---------------- LOGIN ----------------
+
 @auth.route("/login", methods=["GET", "POST"])
 def login():
 
@@ -73,7 +76,8 @@ def login():
     return render_template("login.html")
 
 
-# LOGOUT
+# ---------------- LOGOUT ----------------
+
 @auth.route("/logout")
 @login_required
 def logout():
