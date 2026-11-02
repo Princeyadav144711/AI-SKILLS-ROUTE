@@ -60,8 +60,9 @@ def dashboard():
 
     top_recommendation = None
 
+   
     if recommendation_results:
-    top_recommendation = recommendation_results[0]
+        top_recommendation = recommendation_results[0]
 
     # Determine career
     career = current_user.career_goal
