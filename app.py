@@ -32,6 +32,7 @@ from routes.roadmap import roadmap
 from routes.resources import resources
 from routes.career_advisor import career_advisor
 
+
 app.register_blueprint(auth)
 app.register_blueprint(assessment)
 app.register_blueprint(recommendation)
@@ -60,7 +61,7 @@ def dashboard():
     top_recommendation = None
 
     if recommendation_results:
-        top_recommendation = recommendation_results[0]
+    top_recommendation = recommendation_results[0]
 
     # Determine career
     career = current_user.career_goal
